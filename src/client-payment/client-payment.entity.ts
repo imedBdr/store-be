@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ClientEntity } from 'src/client/client.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'client_payment', synchronize: false })
 export class ClientPaymentEntity {
@@ -16,4 +23,8 @@ export class ClientPaymentEntity {
 
   @Column()
   expiry: number;
+
+  @ManyToOne(() => ClientEntity)
+  @JoinColumn({ name: 'id', referencedColumnName: 'id' })
+  client: ClientEntity;
 }

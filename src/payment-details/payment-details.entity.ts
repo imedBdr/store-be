@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderDetailsEntity } from 'src/order-details/order-details.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'payment_details', synchronize: false })
 export class PaymentDetailsEntity {
@@ -19,4 +20,10 @@ export class PaymentDetailsEntity {
 
   @Column()
   midified_at: number;
+
+  @OneToMany(
+    () => OrderDetailsEntity,
+    (orderDetail) => orderDetail.paymentDetail,
+  )
+  orderDetails: OrderDetailsEntity[];
 }

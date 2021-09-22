@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductInventoryEntity } from 'src/product-inventory/product-inventory.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'discount', synchronize: false })
 export class DiscountEntity {
@@ -22,4 +29,8 @@ export class DiscountEntity {
 
   @Column()
   midified_at: number;
+
+  @ManyToOne(() => ProductInventoryEntity)
+  @JoinColumn({ name: 'id', referencedColumnName: 'id' })
+  productInventory: ProductInventoryEntity;
 }

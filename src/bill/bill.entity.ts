@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BillItemEntity } from 'src/bill-item/bill-item.entity';
+import { SupplierEntity } from 'src/supplier/supplier.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'bill', synchronize: false })
 export class BillEntity {
@@ -13,4 +22,11 @@ export class BillEntity {
 
   @Column()
   modified_at: number;
+
+  @OneToMany((type) => BillItemEntity, (billItem) => billItem.bill)
+  billItems: BillItemEntity[];
+
+  @ManyToOne((type) => SupplierEntity)
+  @JoinColumn({ name: 'id', referencedColumnName: 'id' })
+  supplier: SupplierEntity;
 }

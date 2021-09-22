@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BillEntity } from 'src/bill/bill.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'supplier', synchronize: false })
 export class SupplierEntity {
@@ -19,4 +20,7 @@ export class SupplierEntity {
 
   @Column()
   address: string;
+
+  @OneToMany((type) => BillEntity, (bill) => bill.supplier)
+  bill: BillEntity[];
 }

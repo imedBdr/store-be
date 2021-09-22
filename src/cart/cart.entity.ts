@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { CartItemEntity } from 'src/cart-item/cart-item.entity';
+import { ClientEntity } from 'src/client/client.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'cart', synchronize: false })
 export class CartEntity {
@@ -13,4 +22,11 @@ export class CartEntity {
 
   @Column()
   modified_at: number;
+
+  @OneToMany(() => CartItemEntity, (cartItem) => cartItem.cart)
+  cartItems: CartItemEntity[];
+
+  @ManyToOne(() => ClientEntity)
+  @JoinColumn({ name: 'id', referencedColumnName: 'id' })
+  client: ClientEntity;
 }

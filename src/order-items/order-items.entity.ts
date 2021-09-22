@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderDetailsEntity } from 'src/order-details/order-details.entity';
+import { ProductInventoryEntity } from 'src/product-inventory/product-inventory.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'order_items', synchronize: false })
 export class OrderItemsEntity {
@@ -16,4 +25,12 @@ export class OrderItemsEntity {
 
   @Column()
   midified_at: number;
+
+  @ManyToOne(() => OrderDetailsEntity)
+  @JoinColumn({ name: 'id', referencedColumnName: 'id' })
+  orderDetail: OrderDetailsEntity;
+
+  @ManyToOne(() => ProductInventoryEntity)
+  @JoinColumn({ name: 'id', referencedColumnName: 'id' })
+  productInventory: ProductInventoryEntity;
 }

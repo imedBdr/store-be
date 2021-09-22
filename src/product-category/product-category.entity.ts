@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductEntity } from 'src/product/product.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'product-category', synchronize: false })
 export class ProductCategoryEntity {
@@ -16,4 +17,7 @@ export class ProductCategoryEntity {
 
   @Column()
   modified_at: number;
+
+  @OneToMany(() => ProductEntity, (product) => product.productCategory)
+  products: ProductEntity[];
 }

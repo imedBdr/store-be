@@ -1,4 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { CartEntity } from 'src/cart/cart.entity';
+import { ClientPaymentEntity } from 'src/client-payment/client-payment.entity';
+import { OrderDetailsEntity } from 'src/order-details/order-details.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'client', synchronize: false })
 export class ClientEntity {
@@ -34,4 +44,13 @@ export class ClientEntity {
 
   @Column()
   last_login: number;
+
+  @OneToMany(() => CartEntity, (cart) => cart.client)
+  carts: CartEntity[];
+
+  @OneToMany(() => ClientPaymentEntity, (clientPayment) => clientPayment.client)
+  clientPayments: ClientPaymentEntity[];
+
+  @OneToMany(() => OrderDetailsEntity, (orderDetail) => orderDetail.client)
+  orderDetails: OrderDetailsEntity[];
 }

@@ -12,6 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdministratorEntity = void 0;
 const typeorm_1 = require("typeorm");
 let AdministratorEntity = class AdministratorEntity {
+    constructor(partial) {
+        if (partial) {
+            Object.assign(this, partial);
+            this.created_at = Date.now();
+            this.modified_at = 0;
+        }
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -25,6 +32,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], AdministratorEntity.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], AdministratorEntity.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -46,7 +57,8 @@ __decorate([
     __metadata("design:type", Number)
 ], AdministratorEntity.prototype, "modified_at", void 0);
 AdministratorEntity = __decorate([
-    (0, typeorm_1.Entity)({ name: 'administrator', synchronize: false })
+    (0, typeorm_1.Entity)({ name: 'administrator', synchronize: false }),
+    __metadata("design:paramtypes", [Object])
 ], AdministratorEntity);
 exports.AdministratorEntity = AdministratorEntity;
 //# sourceMappingURL=administrator.entity.js.map

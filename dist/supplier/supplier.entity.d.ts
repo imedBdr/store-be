@@ -1,3 +1,4 @@
+import { BillEntity } from 'src/bill/bill.entity';
 export declare class SupplierEntity {
     id: number;
     first_name: string;
@@ -5,4 +6,5 @@ export declare class SupplierEntity {
     email: string;
     phone_number: string;
     address: string;
+    bill: BillEntity[];
 }

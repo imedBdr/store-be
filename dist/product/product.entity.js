@@ -10,6 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductEntity = void 0;
+const bill_item_entity_1 = require("../bill-item/bill-item.entity");
+const product_category_entity_1 = require("../product-category/product-category.entity");
+const product_inventory_entity_1 = require("../product-inventory/product-inventory.entity");
 const typeorm_1 = require("typeorm");
 let ProductEntity = class ProductEntity {
 };
@@ -29,6 +32,19 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], ProductEntity.prototype, "created_at", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => bill_item_entity_1.BillItemEntity, (BillItem) => BillItem.product),
+    __metadata("design:type", Array)
+], ProductEntity.prototype, "BillItems", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_category_entity_1.ProductCategoryEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", product_category_entity_1.ProductCategoryEntity)
+], ProductEntity.prototype, "productCategory", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => product_inventory_entity_1.ProductInventoryEntity, (productInventory) => productInventory.product),
+    __metadata("design:type", Array)
+], ProductEntity.prototype, "productInventories", void 0);
 ProductEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'product', synchronize: false })
 ], ProductEntity);

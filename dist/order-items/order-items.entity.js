@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderItemsEntity = void 0;
+const order_details_entity_1 = require("../order-details/order-details.entity");
+const product_inventory_entity_1 = require("../product-inventory/product-inventory.entity");
 const typeorm_1 = require("typeorm");
 let OrderItemsEntity = class OrderItemsEntity {
 };
@@ -33,6 +35,16 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], OrderItemsEntity.prototype, "midified_at", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => order_details_entity_1.OrderDetailsEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", order_details_entity_1.OrderDetailsEntity)
+], OrderItemsEntity.prototype, "orderDetail", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_inventory_entity_1.ProductInventoryEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", product_inventory_entity_1.ProductInventoryEntity)
+], OrderItemsEntity.prototype, "productInventory", void 0);
 OrderItemsEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'order_items', synchronize: false })
 ], OrderItemsEntity);

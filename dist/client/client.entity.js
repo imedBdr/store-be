@@ -10,6 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientEntity = void 0;
+const cart_entity_1 = require("../cart/cart.entity");
+const client_payment_entity_1 = require("../client-payment/client-payment.entity");
+const order_details_entity_1 = require("../order-details/order-details.entity");
 const typeorm_1 = require("typeorm");
 let ClientEntity = class ClientEntity {
 };
@@ -57,6 +60,18 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], ClientEntity.prototype, "last_login", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => cart_entity_1.CartEntity, (cart) => cart.client),
+    __metadata("design:type", Array)
+], ClientEntity.prototype, "carts", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => client_payment_entity_1.ClientPaymentEntity, (clientPayment) => clientPayment.client),
+    __metadata("design:type", Array)
+], ClientEntity.prototype, "clientPayments", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => order_details_entity_1.OrderDetailsEntity, (orderDetail) => orderDetail.client),
+    __metadata("design:type", Array)
+], ClientEntity.prototype, "orderDetails", void 0);
 ClientEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'client', synchronize: false })
 ], ClientEntity);

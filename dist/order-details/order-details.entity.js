@@ -10,6 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderDetailsEntity = void 0;
+const client_entity_1 = require("../client/client.entity");
+const order_items_entity_1 = require("../order-items/order-items.entity");
+const payment_details_entity_1 = require("../payment-details/payment-details.entity");
 const typeorm_1 = require("typeorm");
 let OrderDetailsEntity = class OrderDetailsEntity {
 };
@@ -29,6 +32,20 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], OrderDetailsEntity.prototype, "midified_at", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => client_entity_1.ClientEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", client_entity_1.ClientEntity)
+], OrderDetailsEntity.prototype, "client", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => order_items_entity_1.OrderItemsEntity, (orderItem) => orderItem.orderDetail),
+    __metadata("design:type", Array)
+], OrderDetailsEntity.prototype, "orderItems", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => payment_details_entity_1.PaymentDetailsEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", payment_details_entity_1.PaymentDetailsEntity)
+], OrderDetailsEntity.prototype, "paymentDetail", void 0);
 OrderDetailsEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'order_details', synchronize: false })
 ], OrderDetailsEntity);

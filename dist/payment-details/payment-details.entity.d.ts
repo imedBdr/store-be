@@ -1,3 +1,4 @@
+import { OrderDetailsEntity } from 'src/order-details/order-details.entity';
 export declare class PaymentDetailsEntity {
     id: number;
     amount: number;
@@ -5,4 +6,5 @@ export declare class PaymentDetailsEntity {
     status: string;
     created_at: number;
     midified_at: number;
+    orderDetails: OrderDetailsEntity[];
 }

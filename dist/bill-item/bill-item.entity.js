@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BillItemEntity = void 0;
+const bill_entity_1 = require("../bill/bill.entity");
+const product_entity_1 = require("../product/product.entity");
 const typeorm_1 = require("typeorm");
 let BillItemEntity = class BillItemEntity {
 };
@@ -25,6 +27,16 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], BillItemEntity.prototype, "quantity", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => bill_entity_1.BillEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", bill_entity_1.BillEntity)
+], BillItemEntity.prototype, "bill", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_entity_1.ProductEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", product_entity_1.ProductEntity)
+], BillItemEntity.prototype, "product", void 0);
 BillItemEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'bill_item', synchronize: false })
 ], BillItemEntity);

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupplierEntity = void 0;
+const bill_entity_1 = require("../bill/bill.entity");
 const typeorm_1 = require("typeorm");
 let SupplierEntity = class SupplierEntity {
 };
@@ -37,6 +38,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], SupplierEntity.prototype, "address", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)((type) => bill_entity_1.BillEntity, (bill) => bill.supplier),
+    __metadata("design:type", Array)
+], SupplierEntity.prototype, "bill", void 0);
 SupplierEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'supplier', synchronize: false })
 ], SupplierEntity);

@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CartItemEntity = void 0;
+const cart_entity_1 = require("../cart/cart.entity");
+const product_inventory_entity_1 = require("../product-inventory/product-inventory.entity");
 const typeorm_1 = require("typeorm");
 let CartItemEntity = class CartItemEntity {
 };
@@ -33,6 +35,16 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], CartItemEntity.prototype, "modified_at", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => cart_entity_1.CartEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", cart_entity_1.CartEntity)
+], CartItemEntity.prototype, "cart", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_inventory_entity_1.ProductInventoryEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", product_inventory_entity_1.ProductInventoryEntity)
+], CartItemEntity.prototype, "prodcutInventory", void 0);
 CartItemEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'cart_item', synchronize: false })
 ], CartItemEntity);

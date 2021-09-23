@@ -12,6 +12,9 @@ export class AdministratorEntity {
   password: string;
 
   @Column()
+  email: string;
+
+  @Column()
   first_name: string;
 
   @Column()
@@ -25,4 +28,13 @@ export class AdministratorEntity {
 
   @Column()
   modified_at: number;
+
+  constructor(partial: Partial<AdministratorEntity>) {
+    if (partial) {
+      Object.assign(this, partial);
+
+      this.created_at = Date.now();
+      this.modified_at = 0;
+    }
+  }
 }

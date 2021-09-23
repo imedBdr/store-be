@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientPaymentEntity = void 0;
+const client_entity_1 = require("../client/client.entity");
 const typeorm_1 = require("typeorm");
 let ClientPaymentEntity = class ClientPaymentEntity {
 };
@@ -33,6 +34,11 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], ClientPaymentEntity.prototype, "expiry", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => client_entity_1.ClientEntity),
+    (0, typeorm_1.JoinColumn)({ name: 'id', referencedColumnName: 'id' }),
+    __metadata("design:type", client_entity_1.ClientEntity)
+], ClientPaymentEntity.prototype, "client", void 0);
 ClientPaymentEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'client_payment', synchronize: false })
 ], ClientPaymentEntity);

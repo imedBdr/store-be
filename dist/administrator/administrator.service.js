@@ -45,7 +45,16 @@ let AdministratorService = class AdministratorService {
             }
         };
         this.delete = async (id) => {
-            return await this.administratorRepository.delete({ id: id });
+            try {
+                let ret = await this.administratorRepository.delete({ id: id });
+                if ((ret === null || ret === void 0 ? void 0 : ret.affected) > 0)
+                    return id;
+                else
+                    return -1;
+            }
+            catch (err) {
+                throw new common_1.HttpException({ message: `Error while deletting ${id}` }, 500);
+            }
         };
         this.getById = async (id) => {
             let temp = await this.administratorRepository.findOne({ id: id });
@@ -54,7 +63,7 @@ let AdministratorService = class AdministratorService {
                 return ret;
             }
             else
-                throw new common_1.ForbiddenException(`Administrator with ID = ${id} does not exist`);
+                throw new common_1.HttpException({ message: `Administrator with ID = ${id} does not exist` }, 500);
         };
         this.getByName = async (username) => {
             let temp = await this.administratorRepository.findOne({
@@ -65,7 +74,7 @@ let AdministratorService = class AdministratorService {
                 return ret;
             }
             else
-                throw new common_1.ForbiddenException(`Administrator with username = ${username} does not exist`);
+                throw new common_1.HttpException({ message: `Administrator with username = ${username} does not exist` }, 500);
         };
         this.getByEmail = async (email) => {
             let temp = await this.administratorRepository.findOne({ email: email });
@@ -74,7 +83,7 @@ let AdministratorService = class AdministratorService {
                 return ret;
             }
             else
-                throw new common_1.ForbiddenException(`Administrator with email = ${email} does not exist`);
+                throw new common_1.HttpException({ message: `Administrator with email = ${email} does not exist` }, 500);
         };
         this.getAll = async () => {
             let temp = await this.administratorRepository.find();
@@ -87,7 +96,12 @@ let AdministratorService = class AdministratorService {
                 return temp;
         };
         this.update = async (admin) => {
-            return await this.administratorRepository.update(admin, { id: admin.id });
+            let ret = await this.administratorRepository.update(admin, {
+                id: admin.id,
+            });
+            if (ret.affected > 0)
+                return admin;
+            throw new common_1.HttpException({ message: `Cant update Administrator id = ${admin.id}` }, 500);
         };
     }
 };

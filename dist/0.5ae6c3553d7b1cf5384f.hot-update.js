@@ -1,4 +1,12 @@
+exports.id = 0;
+exports.ids = null;
+exports.modules = {
+
+/***/ 35:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
 "use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,11 +19,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+var _a, _b, _c;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.BillItemController = void 0;
-const common_1 = require("@nestjs/common");
-const bill_item_service_1 = require("./bill-item.service");
-const add_bill_item_dto_1 = require("./dto/add-bill-item.dto");
+const common_1 = __webpack_require__(6);
+const bill_item_service_1 = __webpack_require__(34);
+const add_bill_item_dto_1 = __webpack_require__(36);
 let BillItemController = class BillItemController {
     constructor(billItemService) {
         this.billItemService = billItemService;
@@ -27,7 +36,7 @@ let BillItemController = class BillItemController {
         return this.billItemService.AddBillItem(item);
     }
     DeleteBillItem(params) {
-        return params;
+        return this.billItemService.DeleteBillItem(parseInt(params.id));
     }
 };
 __decorate([
@@ -35,13 +44,13 @@ __decorate([
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_a = typeof Promise !== "undefined" && Promise) === "function" ? _a : Object)
 ], BillItemController.prototype, "GetById", null);
 __decorate([
     (0, common_1.Post)(''),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [add_bill_item_dto_1.AddBillItemDto]),
+    __metadata("design:paramtypes", [typeof (_b = typeof add_bill_item_dto_1.AddBillItemDto !== "undefined" && add_bill_item_dto_1.AddBillItemDto) === "function" ? _b : Object]),
     __metadata("design:returntype", void 0)
 ], BillItemController.prototype, "AddBillItem", null);
 __decorate([
@@ -53,7 +62,22 @@ __decorate([
 ], BillItemController.prototype, "DeleteBillItem", null);
 BillItemController = __decorate([
     (0, common_1.Controller)('bill-item'),
-    __metadata("design:paramtypes", [bill_item_service_1.BillItemService])
+    __metadata("design:paramtypes", [typeof (_c = typeof bill_item_service_1.BillItemService !== "undefined" && bill_item_service_1.BillItemService) === "function" ? _c : Object])
 ], BillItemController);
 exports.BillItemController = BillItemController;
-//# sourceMappingURL=bill-item.controller.js.map
+
+
+/***/ })
+
+};
+exports.runtime =
+/******/ function(__webpack_require__) { // webpackRuntimeModules
+/******/ "use strict";
+/******/ 
+/******/ /* webpack/runtime/getFullHash */
+/******/ (() => {
+/******/ 	__webpack_require__.h = () => ("e05c21b08743ad61e7f0")
+/******/ })();
+/******/ 
+/******/ }
+;

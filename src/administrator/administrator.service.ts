@@ -1,11 +1,10 @@
 import { ForbiddenException, HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { tmpdir } from 'os';
-import { DeleteResult, InsertResult, Repository, UpdateResult } from 'typeorm';
+import { Repository } from 'typeorm';
 import { AdministratorEntity } from './administrator.entity';
 import { AdministratorDto } from './dto/administrator.dto';
 import { CreateAdministratorDto } from './dto/create-administrator.dto';
-import { AdministratorInterface } from './interfaces/Administrator.interface';
+import { UpdateAdministratorDto } from './dto/update-administrator.dto';
 
 @Injectable()
 export class AdministratorService {
@@ -34,8 +33,14 @@ export class AdministratorService {
     }
   };
 
-  delete = async (id: number): Promise<DeleteResult> => {
-    return await this.administratorRepository.delete({ id: id });
+  delete = async (id: number): Promise<number> => {
+    try {
+      let ret = await this.administratorRepository.delete({ id: id });
+      if (ret?.affected > 0) return id;
+      else return -1;
+    } catch (err) {
+      throw new HttpException({ message: `Error while deletting ${id}` }, 500);
+    }
   };
 
   getById = async (id: number): Promise<AdministratorDto> => {
@@ -44,8 +49,9 @@ export class AdministratorService {
       let { password, ...ret } = temp;
       return ret;
     } else
-      throw new ForbiddenException(
-        `Administrator with ID = ${id} does not exist`,
+      throw new HttpException(
+        { message: `Administrator with ID = ${id} does not exist` },
+        500,
       );
   };
 
@@ -57,8 +63,9 @@ export class AdministratorService {
       let { password, ...ret } = temp;
       return ret;
     } else
-      throw new ForbiddenException(
-        `Administrator with username = ${username} does not exist`,
+      throw new HttpException(
+        { message: `Administrator with username = ${username} does not exist` },
+        500,
       );
   };
 
@@ -68,8 +75,9 @@ export class AdministratorService {
       let { password, ...ret } = temp;
       return ret;
     } else
-      throw new ForbiddenException(
-        `Administrator with email = ${email} does not exist`,
+      throw new HttpException(
+        { message: `Administrator with email = ${email} does not exist` },
+        500,
       );
   };
 
@@ -83,7 +91,16 @@ export class AdministratorService {
     else return temp;
   };
 
-  update = async (admin: AdministratorEntity): Promise<UpdateResult> => {
-    return await this.administratorRepository.update(admin, { id: admin.id });
+  update = async (
+    admin: UpdateAdministratorDto,
+  ): Promise<UpdateAdministratorDto> => {
+    let ret = await this.administratorRepository.update(admin, {
+      id: admin.id,
+    });
+    if (ret.affected > 0) return admin;
+    throw new HttpException(
+      { message: `Cant update Administrator id = ${admin.id}` },
+      500,
+    );
   };
 }

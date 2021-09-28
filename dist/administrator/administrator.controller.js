@@ -26,20 +26,30 @@ let AdministratorController = class AdministratorController {
         console.log(this.administratorService.getById(parseInt(params.id)));
         return this.administratorService.getById(parseInt(params.id));
     }
+    Update(body) {
+        return this.administratorService.update(body);
+    }
 };
 __decorate([
-    (0, common_1.Get)('/'),
+    (0, common_1.Get)(''),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AdministratorController.prototype, "getAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AdministratorController.prototype, "getById", null);
+__decorate([
+    (0, common_1.Put)(''),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AdministratorController.prototype, "Update", null);
 AdministratorController = __decorate([
     (0, common_1.Controller)('administrator'),
     __metadata("design:paramtypes", [administrator_service_1.AdministratorService])

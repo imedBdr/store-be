@@ -8,5 +8,6 @@ import { BillItemEntity } from './bill-item.entity';
   imports: [TypeOrmModule.forFeature([BillItemEntity])],
   providers: [BillItemService],
   controllers: [BillItemController],
+  exports: [BillItemService],
 })
 export class BillItemModule {}

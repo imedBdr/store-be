@@ -14,7 +14,6 @@ export class AdministratorController {
 
   @Get(':id')
   getById(@Param() params): Promise<AdministratorDto> {
-    console.log(this.administratorService.getById(parseInt(params.id)));
     return this.administratorService.getById(parseInt(params.id));
   }
 

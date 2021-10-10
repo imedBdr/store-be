@@ -25,7 +25,7 @@ export class ProductEntity {
   created_at: number;
 
   @OneToMany(() => BillItemEntity, (BillItem) => BillItem.product)
-  BillItems: BillItemEntity[];
+  billItems: BillItemEntity[];
 
   @ManyToOne(() => ProductCategoryEntity)
   @JoinColumn({ name: 'id', referencedColumnName: 'id' })

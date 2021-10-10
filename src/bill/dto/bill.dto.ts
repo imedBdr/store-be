@@ -1,4 +1,5 @@
 import { BillItemDto } from 'src/bill-item/dto/bill-item.dto';
+import { SupplierDto } from 'src/supplier/dto/supplier.dto';
 
 export class BillDto {
   id: number;
@@ -11,5 +12,5 @@ export class BillDto {
 
   billItems: BillItemDto[];
 
-  //supplier: SupplierEntity;
+  supplier: SupplierDto;
 }

@@ -22,7 +22,7 @@ export class OrderDetailsEntity {
   created_at: number;
 
   @Column()
-  midified_at: number;
+  modified_at: number;
 
   @ManyToOne(() => ClientEntity)
   @JoinColumn({ name: 'id', referencedColumnName: 'id' })

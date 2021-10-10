@@ -1,14 +1,7 @@
 import { CartEntity } from 'src/cart/cart.entity';
 import { ClientPaymentEntity } from 'src/client-payment/client-payment.entity';
 import { OrderDetailsEntity } from 'src/order-details/order-details.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'client', synchronize: false })
 export class ClientEntity {

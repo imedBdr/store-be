@@ -5,7 +5,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -24,7 +23,7 @@ export class OrderItemsEntity {
   created_at: number;
 
   @Column()
-  midified_at: number;
+  modified_at: number;
 
   @ManyToOne(() => OrderDetailsEntity)
   @JoinColumn({ name: 'id', referencedColumnName: 'id' })

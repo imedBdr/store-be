@@ -61,6 +61,10 @@ export class ClientService {
     throw new HttpException({ message: 'User not found' }, 500);
   }
 
+  async GetClientByName(username: string): Promise<ClientDto> {
+    return await this.clientRepository.findOne({ username: username });
+  }
+
   async GetClients(): Promise<ClientDto[]> {
     const arr = await this.clientRepository.find();
     return arr.map((e) => {

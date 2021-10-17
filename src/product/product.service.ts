@@ -1,7 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductCategoryEntity } from 'src/product-category/product-category.entity';
-import { ProductCategoryService } from 'src/product-category/product-category.service';
 import { Repository } from 'typeorm';
 import { AddProductDto } from './dto/add-product.dto';
 import { ProductDto } from './dto/product.dto';
@@ -11,7 +10,6 @@ import { ProductEntity } from './product.entity';
 @Injectable()
 export class ProductService {
   constructor(
-    private readonly productCategoryService: ProductCategoryService,
     @InjectRepository(ProductEntity)
     private readonly productRepository: Repository<ProductEntity>,
   ) {}

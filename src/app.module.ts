@@ -32,6 +32,7 @@ import { ProductEntity } from './product/product.entity';
 import { ProductCategoryEntity } from './product-category/product-category.entity';
 import { ProductInventoryEntity } from './product-inventory/product-inventory.entity';
 import { SupplierEntity } from './supplier/supplier.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -76,6 +77,7 @@ import { SupplierEntity } from './supplier/supplier.entity';
     ProductCategoryModule,
     ProductInventoryModule,
     SupplierModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

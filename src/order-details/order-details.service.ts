@@ -19,7 +19,7 @@ export class OrderDetailsService {
       const savedOrder = new OrderDetailsEntity();
       const client = new ClientEntity();
 
-      client.id = order.supplierId;
+      client.id = order.clientId;
 
       savedOrder.total = order.total;
       savedOrder.client = client;
